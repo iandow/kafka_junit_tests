@@ -1,4 +1,3 @@
-
 Finding the optimal set of configurations for Kafka in order to achieve the fastest possible throughput for real time/stream analytics can be a time-consuming process of trial and error. Automating that process with parametrized JUnit tests can be an excellent way to find optimal Kafka configurations without guess work and without wasting time.
 
 This project contains some JUnit tests that I have found useful for tuning Kafka configurations.  Usage instructions are at the bottom of this README file.

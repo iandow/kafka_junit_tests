@@ -33,14 +33,10 @@ First install a JDK, maven, and optionally Rscript.
 
 To compile and run, do this:
 
-{% highlight bash %}
-mvn -e -Dtest=TopicCountGridSearchTest,ThreadCountSpeedTest test
-{% endhighlight %}
+```mvn -e -Dtest=TopicCountGridSearchTest,ThreadCountSpeedTest test```
 
 That will generate two csv files.  You can use the provided R script to visualize your results, like this:
 
-{% highlight bash %}
-Rscript draw-speed-graphs.r
-{% endhighlight %}
+```Rscript draw-speed-graphs.r```
 
 Then open the two png files to see your results.

@@ -28,7 +28,13 @@ I recently developed some JUnit tests to find which Kafka configurations would m
 
 # How to I compile and run this project?
 
+## Prerequisites
+
 First install a JDK, maven, and optionally Rscript.
+
+Next, make sure Kafka and Zookeeper are started.
+
+## Compile and Run
 
 To compile and run, do this:
 
@@ -39,3 +45,9 @@ That will generate two csv files.  You can use the provided R script to visualiz
 ```Rscript draw-speed-graphs.r```
 
 Then open the two png files to see your results.
+
+## Caveats
+
+Sometimes these tests will run out of heap. You'll know that if you see a "queue full" exception. If that happens, edit the pom.xml and increase the JVM heap in the Xmx parameter.
+
+Also, make sure you don't run out of disk space. In zookeeper.properties (under the config dir, whereever you installed Kafka) make sure dataDir is pointed to a drive with lots of space.

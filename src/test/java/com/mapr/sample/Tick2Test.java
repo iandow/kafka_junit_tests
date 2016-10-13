@@ -1,4 +1,4 @@
-package com.mapr.demo.finserv;
+package com.mapr.sample;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;

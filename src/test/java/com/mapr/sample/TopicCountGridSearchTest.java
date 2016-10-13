@@ -1,4 +1,4 @@
-package com.mapr.demo.finserv;
+package com.mapr.sample;
 
 import com.google.common.collect.Lists;
 import com.google.common.io.Resources;
@@ -29,9 +29,9 @@ public class TopicCountGridSearchTest {
     @Parameterized.Parameters(name = "{index}: fib({0})={1}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {0, 100, 100}, {0, 300, 100}, {0, 1000, 100}, {0, 2000, 100},
-                {16384, 100, 100}, {16384, 300, 100}, {16384, 1000, 100}, {16384, 2000, 100},
-                {65536, 100, 100}, {65536, 300, 100}, {65536, 1000, 100}, {65536, 2000, 100}
+                {0, 100, 100}, {0, 300, 100},
+                {16384, 100, 100}, {16384, 300, 100},
+                {65536, 100, 100}, {65536, 300, 100}
         });
     }
 

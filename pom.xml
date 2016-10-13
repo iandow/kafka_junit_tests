@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>mapr.com</groupId>
-    <artifactId>nyse-taq-streaming</artifactId>
+    <artifactId>kafka_junit_tests</artifactId>
     <version>1.0</version>
 
     <packaging>jar</packaging>
@@ -87,7 +87,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.mapr.demo.finserv.Run</mainClass>
+                            <mainClass>com.mapr.sample.Run</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -114,5 +114,5 @@
             </plugin>
         </plugins>  
     </build>
-    <name>nyse-taq-streaming</name>
+    <name>kafka_junit_tests</name>
 </project>

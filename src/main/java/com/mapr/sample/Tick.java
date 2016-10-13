@@ -1,4 +1,4 @@
-package com.mapr.demo.finserv;
+package com.mapr.sample;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Charsets;

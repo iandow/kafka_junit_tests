@@ -3,4 +3,4 @@ key.serializer=org.apache.kafka.common.serialization.StringSerializer
 value.serializer=org.apache.kafka.common.serialization.ByteArraySerializer
 block.on.buffer.full=true
 default.replication.factor=3
-acks=0
+acks=all

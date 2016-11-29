@@ -1,6 +1,8 @@
 package com.mapr.sample;
 
-public class TickPojo {
+import java.io.Serializable;
+
+public class TickPojo implements Serializable {
 
     public String getDate() {
         return date;

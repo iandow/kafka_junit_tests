@@ -39,7 +39,7 @@ public class Tick2Test {
         byte[] NEWLINE = "\n".getBytes();
         double t0 = System.nanoTime() * 1e-9;
         int m = data.size();
-        try (OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 10_000_000)) {
+        try (OutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 10_000)) {
             for (int i = 0; i < N; i++) {
                 int j = i % m;
                 Tick t = new Tick(data.get(j));
@@ -59,7 +59,7 @@ public class Tick2Test {
         double t0 = System.nanoTime() * 1e-9;
         File tempFile = File.createTempFile("foo", "data");
         tempFile.deleteOnExit();
-        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000_000))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000))) {
             for (int i = 0; i < N; i++) {
                 int j = i % data.size();
                 Tick t = new Tick(data.get(j));
@@ -92,7 +92,7 @@ public class Tick2Test {
         double t0 = System.nanoTime() * 1e-9;
         File tempFile = File.createTempFile("foo", "data");
         tempFile.deleteOnExit();
-        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000_000))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000))) {
             for (int i = 0; i < N; i++) {
                 int j = i % data.size();
                 JSONObject tick = parse_json(data.get(j));
@@ -138,7 +138,20 @@ public class Tick2Test {
 
     @Test
     public void testPojoSpeed() throws Exception {
+        List<String> data = Resources.readLines(Resources.getResource("sample-tick-01.txt"), Charsets.ISO_8859_1);
 
+        double t0 = System.nanoTime() * 1e-9;
+        File tempFile = File.createTempFile("foo", "data");
+        tempFile.deleteOnExit();
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000))) {
+            for (int i = 0; i < N; i++) {
+                int j = i % data.size();
+                TickPojo tick = parse_pojo(data.get(j));
+                out.writeObject(tick);
+            }
+        }
+        double t = System.nanoTime() * 1e-9 - t0;
+        System.out.printf("t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
     }
 
     private static TickPojo parse_pojo(String record) throws ParseException {

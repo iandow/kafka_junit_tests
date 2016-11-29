@@ -16,7 +16,7 @@ import org.json.simple.JSONArray;
 
 public class TypeFormatSpeedTest {
 
-    public static final double N = 1e7;
+    public static final double N = 1e5;
 
     // how fast can we go from string to JSON to string?
     @Test

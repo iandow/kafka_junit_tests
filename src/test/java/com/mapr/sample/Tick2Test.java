@@ -102,6 +102,7 @@ public class Tick2Test {
         double t = System.nanoTime() * 1e-9 - t0;
         System.out.printf("t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
     }
+
     private static JSONObject parse_json(String record) throws ParseException {
         // TODO: handle corrupted messages or messages with missing fields gracefully
         if (record.length() < 71) {
@@ -139,6 +140,7 @@ public class Tick2Test {
     public void testPojoSpeed() throws Exception {
 
     }
+
     private static TickPojo parse_pojo(String record) throws ParseException {
         // TODO: handle corrupted messages or messages with missing fields gracefully
         if (record.length() < 71) {
@@ -172,7 +174,8 @@ public class Tick2Test {
         return trade_info;
     }
 
-    @Test
-    public void testByteSpeed() throws Exception {
-
-    }
+//    @Test
+//    public void testByteSpeed() throws Exception {
+//
+//    }
+}

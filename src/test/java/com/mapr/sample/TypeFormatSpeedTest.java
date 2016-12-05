@@ -38,7 +38,7 @@ public class TypeFormatSpeedTest {
             }
         }
         double t = System.nanoTime() * 1e-9 - t0;
-        System.out.printf("t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
+        System.out.printf("[testJsonSpeed] t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
     }
 
     private static JSONObject parse_json(String record) throws ParseException {
@@ -89,7 +89,7 @@ public class TypeFormatSpeedTest {
             }
         }
         double t = System.nanoTime() * 1e-9 - t0;
-        System.out.printf("t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
+        System.out.printf("[testPojoSpeed] t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
     }
 
     private static TickPojo parse_pojo(String record) throws ParseException {
@@ -140,6 +140,6 @@ public class TypeFormatSpeedTest {
             }
         }
         double t = System.nanoTime() * 1e-9 - t0;
-        System.out.printf("t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
+        System.out.printf("[testByteSpeed] t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
     }
 }

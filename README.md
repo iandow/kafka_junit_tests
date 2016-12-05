@@ -38,7 +38,7 @@ Next, make sure Kafka and Zookeeper are started.
 
 To compile and run, do this:
 
-```mvn -e -Dtest=TopicCountGridSearchTest,ThreadCountSpeedTest test```
+```mvn -e -Dtest=TopicCountGridSearchTest,ThreadCountSpeedTest,TypeFormatSpeedTest test```
 
 That will generate two csv files.  You can use the provided R script to visualize your results, like this:
 

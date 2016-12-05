@@ -14,33 +14,23 @@ import static org.junit.Assert.assertEquals;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 
+
+/* PURPOSE: Compare how fast we can read an attribute of a data record of various
+ * data types.  Time measurements include, reading from a stream, parsing data, and outputting to stream.
+ */
 public class TypeFormatSpeedTest {
 
-    public static final double N = 1e5;
+    public static final double N = 1e6;
 
-    // how fast can we go from string to JSON to string?
     @Test
     public void testJsonSpeed() throws Exception {
-//        File file = new File(Resources.getResource("sample-tick-01.txt").getFile());
-//        FileReader fr = new FileReader(file);
-//        BufferedReader reader = new BufferedReader(fr);
-//        String line = reader.readLine();
-//        List<byte[]> data = new LinkedList<byte[]>();
-//        try {
-//            while (line != null) {
-//                data.add(line.getBytes(Charsets.ISO_8859_1));
-//                line = reader.readLine();
-//            }
-//        } catch (Exception e) {
-//            System.err.println("ERROR: " + e);
-//        }
 
         List<String> data = Resources.readLines(Resources.getResource("sample-tick-01.txt"), Charsets.ISO_8859_1);
 
         double t0 = System.nanoTime() * 1e-9;
         File tempFile = File.createTempFile("foo", "data");
         tempFile.deleteOnExit();
-        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000_00))) {
             for (int i = 0; i < N; i++) {
                 int j = i % data.size();
                 JSONObject tick = parse_json(data.get(j));
@@ -91,7 +81,7 @@ public class TypeFormatSpeedTest {
         double t0 = System.nanoTime() * 1e-9;
         File tempFile = File.createTempFile("foo", "data");
         tempFile.deleteOnExit();
-        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000_00))) {
             for (int i = 0; i < N; i++) {
                 int j = i % data.size();
                 TickPojo tick = parse_pojo(data.get(j));
@@ -135,8 +125,21 @@ public class TypeFormatSpeedTest {
         return trade_info;
     }
 
-//    @Test
-//    public void testByteSpeed() throws Exception {
-//
-//    }
+    @Test
+    public void testByteSpeed() throws Exception {
+        List<String> data = Resources.readLines(Resources.getResource("sample-tick-01.txt"), Charsets.ISO_8859_1);
+
+        double t0 = System.nanoTime() * 1e-9;
+        File tempFile = File.createTempFile("foo", "data");
+        tempFile.deleteOnExit();
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(tempFile), 10_000_00))) {
+            for (int i = 0; i < N; i++) {
+                int j = i % data.size();
+                Tick tick = new Tick(data.get(j));
+                out.writeObject(tick);
+            }
+        }
+        double t = System.nanoTime() * 1e-9 - t0;
+        System.out.printf("t = %.3f us, %.2f records/s\n", t / N * 1e6, N / t);
+    }
 }

@@ -50,7 +50,9 @@ You can graph performance results like this:
 
 ```Rscript src/test/R/draw-speed-graphs.r```
 
-Open the resulting .png image files to see your results.
+Open the resulting .png image files to see your results.  Here is an example of performance data graphed from the TopicCountGridSearchTest test:
+
+![Producer Throughput on a Kafka 3 node cluster](thread.png?raw=true "Producer Throughput on a Kafka 3 node cluster")
 
 # How to run on MapR
 

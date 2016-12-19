@@ -19,10 +19,16 @@
     
  <repositories>
     <repository>
-      <id>apache-releases</id>
-      <url>https://repository.apache.org/content/groups/public</url>
+     <id>mapr-releases</id>
+     <url>http://repository.mapr.com/maven/</url>
+     <snapshots>
+         <enabled>false</enabled>
+     </snapshots>
+     <releases>
+         <enabled>true</enabled>
+     </releases>
     </repository>
-  </repositories>
+ </repositories>
     
     <dependencies>
 

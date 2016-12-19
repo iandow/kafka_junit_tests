@@ -40,9 +40,11 @@ The following unit tests are included:
 
 ## Prerequisites
 
-First install a JDK, maven, and optionally Rscript.
+First install a JDK, maven, and Rscript if you plan on using the provided R script to graph test results.
 
 Next, make sure Kafka and Zookeeper are started.
+
+Update bootstrap.servers in src/test/resources/producer.props to point to the Kafka service.
 
 ## Compile and Run
 
@@ -52,9 +54,9 @@ To compile and run, do this:
 
 That will generate two csv files.  You can use the provided R script to visualize your results, like this:
 
-```Rscript draw-speed-graphs.r```
+```Rscript src/test/R/draw-speed-graphs.r```
 
-Then open the two png files to see your results.
+Then open the .png files to see your results.
 
 # How to run on MapR
 

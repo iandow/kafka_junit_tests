@@ -30,8 +30,7 @@ public class TopicCountGridSearchTest {
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {0, 100, 100}, {0, 300, 100},
-                {16384, 100, 100}, {16384, 300, 100},
-                {65536, 100, 100}, {65536, 300, 100}
+                {16384, 100, 100}, {16384, 300, 100}
         });
     }
 

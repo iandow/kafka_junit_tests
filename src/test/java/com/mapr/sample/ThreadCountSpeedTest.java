@@ -42,8 +42,8 @@ public class ThreadCountSpeedTest {
     @Parameterized.Parameters(name = "{index}: threads={0}, topics={1}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {1, 50}, {2, 50}, {5, 50}, {10, 50}, {15, 50}, {20, 50},
-                {1, 100}, {2, 100}, {5, 100}, {10, 100}, {15, 100}, {20, 100}
+                {1, 50}, {2, 50}, {5, 50},
+                {1, 100}, {2, 100}, {5, 100}
         });
 
 //    return Arrays.asList(new Object[][]{

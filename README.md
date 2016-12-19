@@ -56,6 +56,16 @@ That will generate two csv files.  You can use the provided R script to visualiz
 
 Then open the two png files to see your results.
 
+# How to run on MapR
+
+MapR Streams complies with the Kafka API, so these tests can be executed on a MapR cluster simply by loading the MapR Kafka client in pom.xml. Simply checkout the `mapr` branch of this repo and run the same maven command shown above, like this:
+
+```
+git checkout mapr
+mvn -e -Dtest=TopicCountGridSearchTest,ThreadCountSpeedTest,TypeFormatSpeedTest test
+```
+
+
 ## Caveats
 
 Sometimes these tests will run out of heap. You'll know that if you see a "queue full" exception. If that happens, edit the pom.xml and increase the JVM heap in the Xmx parameter.

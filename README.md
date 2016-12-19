@@ -24,7 +24,17 @@ One method of tuning these parameters is to just run a series of incremental uni
 
 # What is in this project?
 
-I recently developed some JUnit tests to find which Kafka configurations would maximize the speed at which I could publish messages into a Kafka stream. In fact, these unit tests don't so much test anything as produce speed data so that different configurations of Kafka producers can be adjusted to get optimal performance under different conditions. 
+This project includes JUnit tests designed to find which Kafka configurations will maximize the speed at which messages can be published to a Kafka stream. In fact, these unit tests don't so much test anything as produce speed data so that different configurations of Kafka producers can be adjusted to get optimal performance under different conditions. 
+
+The following unit tests are included:
+
+**MessageSizeSpeedTest* measures producer throughput for a variety of message sizes. This test will show how much throughput declines as message sizes increase.
+ 
+**ThreadCountSpeedTest* measures producer throughput for a variety of topic quantities. This test will show how much throughput declines as the producer sends to an increasing quantity of topics.
+  
+**TopicCountGridSearchTest* explores the effect of number of output topics, buffer size, threading and so on.
+
+**TypeFormatSpeedTest* measures how fast messages can be converted from POJO or JSON data format to Kafka's native byte array format. This is useful for illustrating the speed penalty you pay in Kafka serialization for using complex data types.
 
 # How to I compile and run this project?
 

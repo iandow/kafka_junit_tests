@@ -1,5 +1,19 @@
 package com.mapr.sample;
 
+
+/* DESCRIPTION:
+ * This JUnit tests compares how fast we can serialize data objects of various
+ * formats. We simulate Kafka serialization by reading string data form a
+ * file, casting it to a data record of a specific type (e.g. POJO,
+ * JsonObject, or JSON annotated Byte Array), then writing the object back out
+ * to a file. Essentially, we're simulating Kafka streams as file streams and
+ * measuring how long it takes to convert a string data record to a Java object
+ * that encapsulates the record's data fields.
+ *
+ * USAGE:
+ * mvn -e -Dtest=TypeFormatSpeedTest test
+ */
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
@@ -14,10 +28,6 @@ import static org.junit.Assert.assertEquals;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 
-
-/* PURPOSE: Compare how fast we can read an attribute of a data record of various
- * data types.  Time measurements include, reading from a stream, parsing data, and outputting to stream.
- */
 public class TypeFormatSpeedTest {
 
     public static final double N = 1e6;

@@ -48,15 +48,13 @@ Update bootstrap.servers in src/test/resources/producer.props to point to the Ka
 
 ## Compile and Run
 
-To compile and run, do this:
+To compile and run, just run, `mvn package`.
 
-```mvn -e -Dtest=TopicCountGridSearchTest,ThreadCountSpeedTest,TypeFormatSpeedTest test```
-
-That will generate two csv files.  You can use the provided R script to visualize your results, like this:
+That will output test data to `size-count.csv`, `thread-count.csv`, and `topic-count.csv`. If you have Rscript installed then you can create performance graph images like this:
 
 ```Rscript src/test/R/draw-speed-graphs.r```
 
-Then open the .png files to see your results.
+Open the resulting .png files to see your results.
 
 # How to run on MapR
 
@@ -64,12 +62,11 @@ MapR Streams complies with the Kafka API, so these tests can be executed on a Ma
 
 ```
 git checkout mapr
-mvn -e -Dtest=TopicCountGridSearchTest,ThreadCountSpeedTest,TypeFormatSpeedTest test
+mvn package
 ```
-
 
 ## Caveats
 
-Sometimes these tests will run out of heap. You'll know that if you see a "queue full" exception. If that happens, edit the pom.xml and increase the JVM heap in the Xmx parameter.
+Sometimes these tests require a lot of memory. You'll know when you run out of heap if you see a "queue full" exception. If that happens, edit the pom.xml and increase the JVM heap in the Xmx parameter.
 
-Also, make sure you don't run out of disk space. In zookeeper.properties (under the config dir, whereever you installed Kafka) make sure dataDir is pointed to a drive with lots of space.
+Also, make sure you don't run out of disk space. In zookeeper.properties (under the config dir, where ever you installed Kafka) make sure dataDir is pointed to a drive with lots of space.

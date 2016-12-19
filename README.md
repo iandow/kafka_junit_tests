@@ -42,9 +42,25 @@ Update bootstrap.servers in src/test/resources/producer.props to point to the Ka
 
 ## Compile and Run
 
-To compile and run, just cd to the root directory  of the project and run `mvn package`.
+This project has been prepared to run on either MapR or vanilla Kafka clusters. 
+ 
+To run it on a MapR cluster, checkout the `mapr` branch and run maven, like this:
 
-That will output test data to `size-count.csv`, `thread-count.csv`, and `topic-count.csv`. 
+```
+git checkout mapr
+mvn package
+```
+
+To run it on a vanilla Kafka cluster, checkout the `kafka` branch and run maven, like this:
+
+```
+git checkout kafka
+mvn package
+```
+
+After maven completes test data should have been saved to three new files: `size-count.csv`, `thread-count.csv`, and `topic-count.csv`. 
+
+If you want to only run one unit test, use a command like, `mvn -e -Dtest=MessageSizeSpeedTest test`.
 
 You can graph performance results like this:
 
@@ -54,14 +70,7 @@ Open the resulting .png image files to see your results.  Here is an example of 
 
 ![Producer Throughput on a Kafka 3 node cluster](thread.png?raw=true "Producer Throughput on a Kafka 3 node cluster")
 
-# How to run on MapR
 
-MapR Streams complies with the Kafka API, so these tests can be executed on a MapR cluster, too. Simply checkout the `mapr` branch and run maven, like this:
-
-```
-git checkout mapr
-mvn package
-```
 
 ## Caveats
 

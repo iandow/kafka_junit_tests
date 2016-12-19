@@ -18,13 +18,13 @@ This project includes JUnit tests designed to find which Kafka configurations wi
 
 The following unit tests are included:
 
-**MessageSizeSpeedTest* measures producer throughput for a variety of message sizes. This test will show how much throughput declines as message sizes increase.
+1. *MessageSizeSpeedTest* measures producer throughput for a variety of message sizes. This test will show how much throughput declines as message sizes increase.
  
-**ThreadCountSpeedTest* measures producer throughput for a variety of topic quantities. This test will show how much throughput declines as the producer sends to an increasing quantity of topics.
+2. *ThreadCountSpeedTest* measures producer throughput for a variety of topic quantities. This test will show how much throughput declines as the producer sends to an increasing quantity of topics.
   
-**TopicCountGridSearchTest* explores the effect of number of output topics, buffer size, threading and so on.
+3. *TopicCountGridSearchTest* explores the effect of number of output topics, buffer size, threading and so on.
 
-**TypeFormatSpeedTest* measures how fast messages can be converted from POJO or JSON data format to Kafka's native byte array format. This is useful for illustrating the speed penalty you pay in Kafka serialization for using complex data types.
+4. *TypeFormatSpeedTest* measures how fast messages can be converted from POJO or JSON data format to Kafka's native byte array format. This is useful for illustrating the speed penalty you pay in Kafka serialization for using complex data types.
 
 # How do I compile and run this project?
 

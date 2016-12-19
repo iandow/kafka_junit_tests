@@ -1,22 +1,12 @@
-Finding the optimal set of configurations for Kafka in order to achieve the fastest possible throughput for real time/stream analytics can be a time-consuming process of trial and error. Automating that process with parametrized JUnit tests can be an excellent way to find optimal Kafka configurations without guess work and without wasting time.
 
-This project contains some JUnit tests that I have found useful for tuning Kafka configurations.  Usage instructions are at the bottom of this README file.
 
-## What factors impact Kafka performance?
+This project contains JUnit tests for tuning Kafka configurations.  
 
-[Apache Kafka](http://kafka.apache.org) is a distributed streaming platform. It lets you publish and subscribe to streams of data like a messaging system. You can also use it to store streams of data in a distributed cluster and process those streams in real-time. However, sometimes it can be challenging to publish or consume data at a rate that keeps up with real-time. Optimizing the speed of your producers or consumers involves knowing what specific values to use for a variety of performance related variables:
+# What is the purpose of this project?
 
-1. How many worker threads should my producers (or consumers) have?
-2. How many topics should my producers send to?
-2. How many partitions should my topics have?
-3. Should I enable compression? If so, should I use the gzip, snappy, or lz4 codec?
-4. How long should my producers wait to allow other records to be sent so that the sends can be batched together?
-5. How large should I make those batches?
-6. What's the smallest virtual machine configuration that I can use to achieve my real-time throughput requirements?
+[Apache Kafka](http://kafka.apache.org) is a distributed streaming platform. It lets you publish and subscribe to streams of data like a messaging system. You can also use it to store streams of data in a distributed cluster and process those streams in real-time. However, sometimes it can be challenging to publish or consume data at a rate that keeps up with real-time. Optimizing the speed of your producers or consumers involves knowing what specific values to use for a variety of performance related variables.
 
-(By the way, from my experience I found that the first three factors are the most significant - number of threads per producer, number of topics they send to, and the number of partitions in each topic.  I didn't spend much time optimizing the parameters for batching, but my instinct tells me they don't matter as much).
-
-One method of tuning these parameters is to just run a series of incremental unit tests designed to measure throughput over a range of values for a single parameter. JUnit provides an excellent means of performing parameterized unit tests. 
+One method of tuning these parameters is to just run a series of incremental unit tests designed to measure throughput over a range of values for a single parameter.  However, determining which configurations produce the best possible Kafka performance can be a time-consuming process of trial and error. Automating that process with parametrized JUnit tests is an excellent way to optimize Kafka without guess work and without wasting time.
 
 ## What is JUnit?
 
@@ -36,29 +26,35 @@ The following unit tests are included:
 
 **TypeFormatSpeedTest* measures how fast messages can be converted from POJO or JSON data format to Kafka's native byte array format. This is useful for illustrating the speed penalty you pay in Kafka serialization for using complex data types.
 
-# How to I compile and run this project?
+# How do I compile and run this project?
 
 ## Prerequisites
 
-First install a JDK, maven, and Rscript if you plan on using the provided R script to graph test results.
+Download and run this code on a Kafka or MapR cluster.
+ 
+Install a JDK and maven if you haven't already.
+ 
+If you want to graph your test results, install Rscript, too.
 
-Next, make sure Kafka and Zookeeper are started.
+Start Kafka and Zookeeper services.
 
 Update bootstrap.servers in src/test/resources/producer.props to point to the Kafka service.
 
 ## Compile and Run
 
-To compile and run, just run, `mvn package`.
+To compile and run, just cd to the root directory  of the project and run `mvn package`.
 
-That will output test data to `size-count.csv`, `thread-count.csv`, and `topic-count.csv`. If you have Rscript installed then you can create performance graph images like this:
+That will output test data to `size-count.csv`, `thread-count.csv`, and `topic-count.csv`. 
+
+You can graph performance results like this:
 
 ```Rscript src/test/R/draw-speed-graphs.r```
 
-Open the resulting .png files to see your results.
+Open the resulting .png image files to see your results.
 
 # How to run on MapR
 
-MapR Streams complies with the Kafka API, so these tests can be executed on a MapR cluster simply by loading the MapR Kafka client in pom.xml. Simply checkout the `mapr` branch of this repo and run the same maven command shown above, like this:
+MapR Streams complies with the Kafka API, so these tests can be executed on a MapR cluster, too. Simply checkout the `mapr` branch and run maven, like this:
 
 ```
 git checkout mapr

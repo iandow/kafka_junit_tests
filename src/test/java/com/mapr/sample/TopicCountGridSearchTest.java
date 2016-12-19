@@ -62,9 +62,10 @@ public class TopicCountGridSearchTest {
     public void testSpeed() throws IOException {
         System.out.printf("batchSize = %d, topicCount = %d\n", batchSize, topicCount);
 
+        String stream = "/mapr/my.cluster.com/user/mapr/taq";
         List<String> ourTopics = Lists.newArrayList();
         for (int i = 0; i < topicCount; i++) {
-            ourTopics.add(String.format("t-%05d", i));
+            ourTopics.add(String.format("%s:t-%05d", stream, i));
         }
         Random rand = new Random();
 

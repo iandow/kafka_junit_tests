@@ -97,14 +97,7 @@ public class MessageSizeSpeedTest {
         // Create new topic names. Kafka will automatically create these topics if they don't already exist.
         List<String> ourTopics = Lists.newArrayList();
         for (int i = 0; i < topicCount; i++) {
-            /*
-             * Use this line to run test in MapR
-             */
-            // ourTopics.add(String.format("%s:t-%05d", STREAM, i));
-            /*
-             * Use this line to run test in vanilla Kafka
-             */
-            ourTopics.add(String.format("t-%05d", i));  // Topic names will look like, "t-00874".
+            ourTopics.add(String.format("%s:t-%05d", STREAM, i));
         }
 
         // Create a message containing random bytes. We'll send this message over and over again

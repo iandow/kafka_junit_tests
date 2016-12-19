@@ -22,7 +22,7 @@ import java.util.concurrent.*;
  */
 @RunWith(Parameterized.class)
 public class ThreadCountSpeedTest {
-    private static final String STREAM = "/mapr/ian.cluster.com/user/mapr/taq";
+    private static final String STREAM = "/mapr/my.cluster.com/user/mapr/taq";
     private static final double TIMEOUT = 30;  // seconds
     private static final int BATCH_SIZE = 1000000;  // The unit of measure for throughput is "batch size" per second
     // e.g. Throughput = X "millions of messages" per sec

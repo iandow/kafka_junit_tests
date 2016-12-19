@@ -25,7 +25,7 @@ import java.util.Random;
  */
 @RunWith(Parameterized.class)
 public class TopicCountGridSearchTest {
-    private static final String STREAM = "/mapr/ian.cluster.com/user/mapr/taq";
+    private static final String STREAM = "/mapr/my.cluster.com/user/mapr/taq";
 
     @Parameterized.Parameters(name = "{index}: fib({0})={1}")
     public static Iterable<Object[]> data() {

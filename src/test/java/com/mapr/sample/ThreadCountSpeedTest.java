@@ -22,6 +22,7 @@ import java.util.concurrent.*;
  */
 @RunWith(Parameterized.class)
 public class ThreadCountSpeedTest {
+    private static final String STREAM = "/mapr/ian.cluster.com/user/mapr/taq";
     private static final double TIMEOUT = 30;  // seconds
     private static final int BATCH_SIZE = 1000000;  // The unit of measure for throughput is "batch size" per second
     // e.g. Throughput = X "millions of messages" per sec
@@ -103,7 +104,7 @@ public class ThreadCountSpeedTest {
         List<String> ourTopics = Lists.newArrayList();
         for (int i = 0; i < topicCount; i++) {
             // Topic names will look like, "t-00874"
-            ourTopics.add(String.format("t-%05d", i));
+            ourTopics.add(String.format("%s:t-%05d", STREAM, i));
         }
 
         // Create a message containing random bytes. We'll send this message over and over again

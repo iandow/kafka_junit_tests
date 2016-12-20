@@ -167,6 +167,7 @@ public class MessageSizeSpeedTest {
             // dt = elapsed time for this batch
             // batch / dt = millions of messages sent per second for this batch
             data.printf("%d, %d,%d,%d,%.3f,%.1f,%.3f,%.1f\n", messageSize, threadCount, topicCount, i, t, i / t, dt, BATCH_SIZE / dt);
+            data.flush();
             if (t > TIMEOUT) {
                 break;
             }

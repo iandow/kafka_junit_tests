@@ -90,6 +90,7 @@ public class TopicCountGridSearchTest {
             i += batch;
             batchStart = t;
             data.printf("%d,%d,%d,%d,%.3f,%.1f,%.3f,%.1f\n", batchSize, topicCount, messageSize, i, t, i / t, dt, batch / dt);
+            data.flush();
             if (t > timeout) {
                 break;
             }
